@@ -3,6 +3,7 @@ node_modules/
 juiceshop.sqlite
 order_*.pdf
 app/
+.jfrog/
 !frontend/src/app
 uploads/complaints/*.*
 !uploads/complaints/.gitkeep
