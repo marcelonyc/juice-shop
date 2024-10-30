@@ -61,13 +61,18 @@ jobs:
                     tags: ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
                     provenance: false
 
-            - name: Publish build info
+            - name: Add dependencies
               run: |
-                echo "DOCKER_REMOTE: ${{ env.DOCKER_REMOTE }}"
-                jf rt build-add-dependencies ${{ vars.JF_BUILD_NAME}} ${{ vars.JF_BUILD_NUMBER }} --from-rt ${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
-                jf rt build-add-git  ${{ vars.JF_BUILD_NAME}} ${{ vars.JF_BUILD_NUMBER }} ./ --project ${{ vars.JF_PROJECT }}
-                jf rt build-publish  ${{ vars.JF_BUILD_NAME}} ${{ vars.JF_BUILD_NUMBER }}
+                jf rt build-add-dependencies  --from-rt ${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
+            
+            - name: Add git to build
+              run: |
+                jf rt build-add-git  
 
+            - name: Publish Build
+              run: |
+                jf rt build-publish 
+                
             - name: Build Scan
               run: |
-                jf build-scan ${{ vars.JF_BUILD_NAME}} ${{ vars.JF_BUILD_NUMBER }}
+                jf build-scan 
