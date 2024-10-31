@@ -19,7 +19,7 @@ env:
 jobs:
     build-publish-python:
         name: juice-shop-build
-        runs-on: juice-shop-self-hosted-x64
+        runs-on: juice-shop-self-hosted
         steps:
             # Use the specific setup-cli branch
             - name: Setup JFrog CLI
