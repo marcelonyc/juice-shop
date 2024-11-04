@@ -63,16 +63,16 @@ jobs:
 
             - name: Add dependencies
               run: |
-                jf rt build-add-dependencies ${{ vars.JF_BUILD_NAME }} ${{ vars.JF_BUILD_NUMBER }} --from-rt ${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
+                jf rt build-add-dependencies ${{ env.JF_BUILD_NAME }} ${{ env.JF_BUILD_NUMBER }} --from-rt ${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
             
             - name: Add git to build
               run: |
-                jf rt build-add-git  ${{ vars.JF_BUILD_NAME }} ${{ vars.JF_BUILD_NUMBER }}
+                jf rt build-add-git  ${{ env.JF_BUILD_NAME }} ${{ env.JF_BUILD_NUMBER }}
 
             - name: Publish Build
               run: |
-                jf rt build-publish ${{ vars.JF_BUILD_NAME }} ${{ vars.JF_BUILD_NUMBER }}
+                jf rt build-publish ${{ env.JF_BUILD_NAME }} ${{ env.JF_BUILD_NUMBER }}
                 
             - name: Build Scan
               run: |
-                jf build-scan ${{ vars.JF_BUILD_NAME }} ${{ vars.JF_BUILD_NUMBER }} --fail=false
+                jf build-scan ${{ env.JF_BUILD_NAME }} ${{ env.JF_BUILD_NUMBER }} --fail=false
