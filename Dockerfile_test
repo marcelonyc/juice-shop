@@ -1,0 +1,5 @@
+FROM ubunt:22.04
+RUN apt-get update && apt-get install -y python3
+RUN mkdir /app
+RUN echo "print('Hello World')" > /app/hello.py
+CMD ["python3", "/app/hello.py"]

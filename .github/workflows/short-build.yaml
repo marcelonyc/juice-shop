@@ -1,4 +1,4 @@
-name: juice-shop-build
+name: juice-shop-short-build
 on: workflow_dispatch
 
 permissions:
@@ -13,12 +13,12 @@ env:
     DOCKER_REMOTE: ${{ vars.DOCKER_REMOTE }}
     IMAGE_NAME: '${{ vars.IMAGE_NAME }}:${{ github.run_number }}'
     JF_URL: https://${{ vars.JF_URL }}/
-    JF_BUILD_NAME: 'juice-shop-build'
+    JF_BUILD_NAME: 'juice-shop-short-build'
     JF_BUILD_NUMBER: ${{ github.run_number }}
 
 jobs:
     build-publish-python:
-        name: juice-shop-build
+        name: juice-shop-short-build
         runs-on: juice-shop-self-hosted
         steps:
             # Use the specific setup-cli branch
@@ -48,6 +48,7 @@ jobs:
               uses: docker/build-push-action@v5
               id: build
               with:
+                    file: Dockerfile_test
                     build-args: |
                         JF_URL=${{ vars.JF_URL }}
                         JF_PROJECT=${{ vars.JF_PROJECT }}
