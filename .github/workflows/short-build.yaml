@@ -73,7 +73,11 @@ jobs:
             - name: Publish Build
               run: |
                 jf rt build-publish ${{ env.JF_BUILD_NAME }} ${{ env.JF_BUILD_NUMBER }}
-                
+
+            - name: Docker Scan
+              run: |
+                jf docker scan ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
+
             - name: Build Scan
               run: |
                 jf build-scan ${{ env.JF_BUILD_NAME }} ${{ env.JF_BUILD_NUMBER }} --fail=false
