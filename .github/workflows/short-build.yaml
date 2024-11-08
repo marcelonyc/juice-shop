@@ -74,6 +74,11 @@ jobs:
               run: |
                 jf rt build-publish ${{ env.JF_BUILD_NAME }} ${{ env.JF_BUILD_NUMBER }}
 
+            - name: Docker pull pre-scan
+              run: |
+                jf docker pull ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
+
+
             - name: Docker Scan
               run: |
                 jf docker scan ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
